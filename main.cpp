@@ -1,4 +1,5 @@
 #include "raylib-cpp.hpp"
+#include "./classes/player.h"
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
@@ -14,8 +15,6 @@ int screenHeight = 720;
 // Module Functions Declaration
 //----------------------------------------------------------------------------------
 void UpdateDrawFrame(void);     // Update and Draw one frame
-
-//----------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------
 // Main Enry Point
