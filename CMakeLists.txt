@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(raft_away)
+project(raft_away VERSION 1.0)
 
 # raylib
 find_package(raylib QUIET)
@@ -26,18 +26,18 @@ if (NOT raylib_cpp_FOUND)
 endif()
 
 # This is the main part:
-set(SOURCES main.cpp)
+set(SOURCES 
+    main.cpp 
+    ./classes/player.cpp
+    ./scenes/mainscene/mainscene.cpp
+)
 add_executable(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME}
+  PRIVATE
+    classes/
+    scenes/mainscene
+)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11)
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp)
-
-# Web Configurations
-if (${PLATFORM} STREQUAL "Web")
-    # Tell Emscripten to build an example.html file.
-    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
-
-    # Required linker flags for using Raylib with Emscripten
-    target_link_options(${PROJECT_NAME} PRIVATE -sEXPORTED_FUNCTIONS=['_main','_malloc'] -sEXPORTED_RUNTIME_METHODS=ccall -sUSE_GLFW=3)
-endif()
 
 # That's it! You should have an example executable that you can run. Have fun!
