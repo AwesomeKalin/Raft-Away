@@ -1,5 +1,7 @@
 #include "raylib-cpp.hpp"
 
+#include <iostream>
+
 #include "player.h"
 #include "mainscene.h"
 #include "msmessage.h"
@@ -35,7 +37,8 @@ int main()
     while (!window.ShouldClose())    // Detect window close button or ESC key
     {
         if (stateMan == 1) {
-            mainScene(player, screenWidth, screenHeight);
+            MSMessage msg = mainScene(player, screenWidth, screenHeight);
+            player = msg.player;
         }
     }
 

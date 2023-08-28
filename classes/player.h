@@ -6,6 +6,8 @@ class Player {
         Vector2 pos;
         int radius;
         Player(int screenWidth, int screenHeight, int rad);
+        void handlePlayerMovement();
+        void renderPlayer();
 };
 
 #endif
