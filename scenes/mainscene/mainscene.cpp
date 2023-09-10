@@ -5,15 +5,22 @@
 #include "mainscene.h"
 #include "player.h"
 #include "msmessage.h"
+#include "terrainrender.h"
 
-MSMessage mainScene(Player player, int screenWidth, int screenHeight) {
+MSMessage mainScene(Player player, int screenWidth, int screenHeight, Camera2D camera) {
     player.handlePlayerMovement();
+    camera.target = player.pos;
 
     BeginDrawing();
 
         ClearBackground(SKYBLUE);
 
-        player.renderPlayer();
+        BeginMode2D(camera);
+
+            player.renderPlayer();
+            renderTerrain();
+
+        EndMode2D();
 
         char xpos[11];
         snprintf(xpos, sizeof xpos, "%f", player.pos.x);
@@ -46,6 +53,7 @@ MSMessage mainScene(Player player, int screenWidth, int screenHeight) {
 
     msg.changeToScene = 1;
     msg.player = player;
+    msg.camera = camera;
 
     return msg;
 }

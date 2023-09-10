@@ -31,14 +31,22 @@ int main()
     int stateMan = 1;
 
     // Setup Player
-    Player player(screenWidth, screenHeight, 10);
+    Player player(screenWidth, screenHeight, 50);
+
+    // Setup Camera
+    Camera2D camera = { 0 };
+    camera.target = player.pos;
+    camera.offset = (Vector2){ screenWidth/2.0f, screenHeight/2.0f };
+    camera.rotation = 0.0f;
+    camera.zoom = 1.0f;
 
     // Main game loop
     while (!window.ShouldClose())    // Detect window close button or ESC key
     {
         if (stateMan == 1) {
-            MSMessage msg = mainScene(player, screenWidth, screenHeight);
+            MSMessage msg = mainScene(player, screenWidth, screenHeight, camera);
             player = msg.player;
+            camera = msg.camera;
         }
     }
 

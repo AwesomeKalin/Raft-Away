@@ -30,6 +30,7 @@ set(SOURCES
     main.cpp 
     ./classes/player.cpp
     ./scenes/mainscene/mainscene.cpp
+    ./scenes/mainscene/terrainrender.cpp
 )
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME}
