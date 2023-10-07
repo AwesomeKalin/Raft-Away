@@ -22,6 +22,7 @@ jobs:
       run: |
         mkdir build
         cd build
+        cmake --version
         cmake -G "MinGW Makefiles" ..
 
     - name: Build
