@@ -28,3 +28,9 @@ jobs:
       run: |
         cd build
         make
+
+     - name: Upload raft_away.exe
+       uses: actions/upload-artifact@v3
+       with:
+         name: Raft Away Windows
+         path: ./build/raft_away.exe
