@@ -22,13 +22,13 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -G "MinGW Makefiles" .. -static-libstdc++
+        cmake -G "MinGW Makefiles" ..
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: |
         cd build
-        make
+        make -static-libstdc++
 
     - name: Upload raft_away.exe
       uses: actions/upload-artifact@v3
