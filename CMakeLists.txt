@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(raft_away VERSION 1.0)
 
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+  set(BUILD_TESTING OFF CACHE BOOL "Build tests" FORCE)
+endif()
+
 # raylib
 find_package(raylib QUIET)
 if (NOT raylib_FOUND)
