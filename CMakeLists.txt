@@ -25,16 +25,16 @@ if (NOT raylib_cpp_FOUND)
     FetchContent_MakeAvailable(raylib_cpp)
 endif()
 
-# tmx
-find_package(tmx QUIET)
-if (NOT tmx_FOUND)
+# raylib-tileson
+find_package(raylib-tileson QUIET)
+if (NOT raylib-tileson_FOUND)
     include(FetchContent)
     FetchContent_Declare(
-        tmx
-        GIT_REPOSITORY https://github.com/baylej/tmx.git
-        GIT_TAG tmx_1.4.0
+        raylib-tileson
+        GIT_REPOSITORY https://github.com/RobLoach/raylib-tileson.git
+        GIT_TAG v4.2.0
     )
-    FetchContent_MakeAvailable(tmx)
+    FetchContent_MakeAvailable(raylib-tileson)
 endif()
 
 # This is the main part:
@@ -51,7 +51,7 @@ target_include_directories(${PROJECT_NAME}
     scenes/mainscene
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 11)
-target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp tmx ZLIB LibXml2 Iconv xz)
+target_link_libraries(${PROJECT_NAME} PUBLIC raylib raylib_cpp raylib-tileson)
 
 # Copy the resources
 file(GLOB resources resources/*)
