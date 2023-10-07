@@ -22,7 +22,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -G "Unix Makefiles" ..
+        cmake -G "Mingw Makefiles" ..
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
