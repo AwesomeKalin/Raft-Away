@@ -1,6 +1,7 @@
 #include "raylib-cpp.hpp"
 
 #include "player.h"
+#include "terrain.h"
 
 Player::Player(int screenWidth, int screenHeight, int rad) {
     pos = { (float)screenWidth/2, (float)(screenHeight/2) };
@@ -13,7 +14,7 @@ void Player::handlePlayerMovement() {
     if (IsKeyDown(KEY_D)) pos.x += 2.0f;
     if (IsKeyDown(KEY_A)) pos.x -= 2.0f;
     if ((IsKeyDown(KEY_SPACE)) || (jumping == true)) jump();
-    if ((jumping == false) & ((pos.x < 50) || (pos.x > 350))) fall();
+    if ((jumping == false) && checkFloor(new Terrain(), pos.x, pos.y)) fall();
 }
 
 void Player::renderPlayer() {
@@ -57,4 +58,14 @@ void Player::fall() {
         pos.y = floorPos;
         jumpSpeed = 0;
     }
+}
+
+bool Player::checkFloor(Terrain* terrain, int xpos, int ypos) {
+    for (int i = 0; i <= (sizeof(terrain->platforms)/sizeof(terrain->platforms[0])); i++) {
+        if (xpos > terrain->platforms[i].x || xpos < (terrain->platforms[i].x + terrain->platforms[i].width) || ypos > terrain->platforms[i].y) {
+            return true;
+        }
+    }
+
+    return false;
 }

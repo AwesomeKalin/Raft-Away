@@ -1,3 +1,5 @@
+#include "terrain.h"
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -15,6 +17,7 @@ class Player {
         void renderPlayer();
         void jump();
         void fall();
+        bool checkFloor(Terrain* terrain, int xpos, int ypos);
 };
 
 #endif

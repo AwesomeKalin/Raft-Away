@@ -1,8 +1,13 @@
 #include "raylib-cpp.hpp"
 
-#include "terrainrender.h"
+#include <ostream>
 
-void renderTerrain() {
-    DrawRectangle(0, 410, 1280, 30, YELLOW);
-    DrawRectangle(50, 270, 300, 30, YELLOW);
+#include "terrainrender.h"
+#include "terrain.h"
+
+void renderTerrain(Terrain* terrain) {
+
+    for (int i = 0; i <= (sizeof(terrain->platforms)/sizeof(terrain->platforms[0])); i++) {
+        DrawRectangle(terrain->platforms[i].x, terrain->platforms[i].y, terrain->platforms[i].width, terrain->platforms[i].height, YELLOW);
+    }
 }

@@ -18,7 +18,7 @@ MSMessage mainScene(Player player, int screenWidth, int screenHeight, Camera2D c
         BeginMode2D(camera);
 
             player.renderPlayer();
-            renderTerrain();
+            renderTerrain(new Terrain());
 
         EndMode2D();
 
