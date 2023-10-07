@@ -9,8 +9,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-windows:
-    name: Build on Linux
+  build-linux:
+    name: Build on Linux (Debug)
     runs-on: ubuntu-latest
 
     steps:
@@ -27,7 +27,6 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake --version
         cmake ..
 
     - name: Build
@@ -39,5 +38,37 @@ jobs:
     - name: Upload raft_away
       uses: actions/upload-artifact@v3
       with:
-        name: Raft Away Linux
+        name: Raft Away Linux (Debug)
+        path: ./build/raft_away
+  
+  build-linux-releae:
+    name: Build on Linux (Release)
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Dependencies
+      run: |
+        sudo apt update
+        sudo apt install libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev build-essential cmake
+
+    - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+
+    - name: Build
+      # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
+      run: |
+        cd build
+        make
+
+    - name: Upload raft_away
+      uses: actions/upload-artifact@v3
+      with:
+        name: Raft Away Linux (Release)
         path: ./build/raft_away
