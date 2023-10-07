@@ -22,7 +22,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -G "MinGW Makefiles" ..
+        cmake -G "MinGW Makefiles" .. -static-libstdc++
 
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
