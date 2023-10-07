@@ -10,6 +10,7 @@ on:
 
 jobs:
   build-windows:
+    name: Build on Windows
     runs-on: windows-latest
 
     steps:
@@ -29,8 +30,8 @@ jobs:
         cd build
         make
 
-     - name: Upload raft_away.exe
-       uses: actions/upload-artifact@v3
-       with:
-         name: Raft Away Windows
-         path: ./build/raft_away.exe
+    - name: Upload raft_away.exe
+      uses: actions/upload-artifact@v3
+      with:
+        name: Raft Away Windows
+        path: ./build/raft_away.exe
